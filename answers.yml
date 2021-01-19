@@ -1,0 +1,18 @@
+FirstName: Sabrina
+LastName: Mattuzzi
+MatriculationNumber: 201525
+AcademicYear: 2019-2020
+GitHubUrl: https://github.com/sabrina-mattuzzi/dncs-lab
+Subnets:
+  HostsA:
+    RequiredAddresses: 435
+    SubnetAddress: 192.168.0.0
+    SubnetPrefixLength: 23
+  HostsB:
+    RequiredAddresses: 371
+    SubnetAddress: 192.168.2.0
+    SubnetPrefixLength: 23
+  Hub:
+    RequiredAddresses: 348
+    SubnetAddress: 192.168.4.0
+    SubnetPrefixLength: 23
