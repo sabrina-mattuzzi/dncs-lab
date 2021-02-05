@@ -136,6 +136,8 @@ I divided the network in te image above four different subnets:
 | enp0s9 |  router-1 | 10.1.1.1 | 
 | enp0s9 | router-2 | 10.1.1.2 
 
+In thist subnet there are only router-1 and router-2, so I decided to use \30 because 2<sup>(32-30)</sup>-2=2
+
 - between router-1 and host-a
 
 | NETWORK INTERFACE | DEVICE | IP ADDRESS | 
