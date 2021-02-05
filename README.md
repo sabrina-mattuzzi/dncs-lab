@@ -123,3 +123,6 @@ The assignment deliverable consists of a Github repository containing:
 - Host-c must run a docker image (dustnic82/nginx-test) that must be reachable by host-a and host-b
 - No dynamic routing can be used
 - Routes must be as generic as possible
+
+##Network and subnetting
+![alt text](https://github.com/sabrina-mattuzzi/dncs-lab/blob/master/rete.JPG)
