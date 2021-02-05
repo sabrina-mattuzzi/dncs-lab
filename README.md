@@ -117,4 +117,9 @@ The assignment deliverable consists of a Github repository containing:
 
 
 # Design
-[ Your work goes here ]
+-435 adresses for host-A
+-371 adresses for host-B
+-348 adresses for host-C
+-Host-c must run a docker image (dustnic82/nginx-test) that must be reachable by host-a and host-b
+-No dynamic routing can be used
+-Routes must be as generic as possible
