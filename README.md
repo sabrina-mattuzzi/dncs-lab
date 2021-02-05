@@ -136,7 +136,7 @@ I divided the network in te image above four different subnets:
 | enp0s9 |  router-1 | 10.1.1.1 | 
 | enp0s9 | router-2 | 10.1.1.2 
 
-In thist subnet there are only router-1 and router-2, so I decided to use \30 because 2<sup>(32-30)</sup>-2=2
+In thist subnet there are only router-1 and router-2, so I decided to use \30 to manage only 2 adresses (2<sup>32-30</sup>-2=2)
 
 - between router-1 and host-a
 
@@ -144,6 +144,8 @@ In thist subnet there are only router-1 and router-2, so I decided to use \30 be
 | :---: | :---: | :---:|
 | enp0s8.2 |  router-1 | 192.168.0.1 | 
 | enp0s8 | host-a | 192.168.0.2 
+
+In thist subnet I have to manage 435 ip adresses, so I decided to use \23 (2<sup>32-23</sup>-2=510>435)
 
 - between router-1 and host-b
 
