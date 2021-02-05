@@ -131,13 +131,12 @@ The assignment deliverable consists of a Github repository containing:
 I divided the network in the image above in four different subnets:
 - between router-1 and router-2
 
-In thist subnet there are only router-1 and router-2, so I decided to use \30 to manage only 2 adresses (2<sup>32-30</sup>-2=2)
+In thist subnet there are only router-1 and router-2, so I decided to use /30 to manage only 2 adresses (2<sup>32-30</sup>-2=2)
 
 | NETWORK INTERFACE | DEVICE | IP ADDRESS | 
 | :---: | :---: | :---:|
-| enp0s9 |  router-1 | 10.1.1.1\30 | 
-| enp0s9 | router-2 | 10.1.1.2\30 
-
+| enp0s9 |  router-1 | 10.1.1.1/30 | 
+| enp0s9 | router-2 | 10.1.1.2/30 
 
 - between router-1 and host-a
 
