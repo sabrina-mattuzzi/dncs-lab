@@ -130,13 +130,26 @@ The assignment deliverable consists of a Github repository containing:
 
 I divided the network in te image above four different subnets:
 - between router-1 and router-2
-
 | NETWORK INTERFACE | DEVICE | IP ADDRESS | 
 | :---: | :---: | :---:|
 | enp0s9 |  router-1 | 10.1.1.1 | 
 | enp0s9 | router-2 | 10.1.1.2 
 
 - between router-1 and host-a
+| NETWORK INTERFACE | DEVICE | IP ADDRESS | 
+| :---: | :---: | :---:|
+| enp0s8.2 |  router-1 | 192.168.0.1 | 
+| enp0s8 | host-a | 192.168.0.2 
+
 - between router-1 and host-b
+| NETWORK INTERFACE | DEVICE | IP ADDRESS | 
+| :---: | :---: | :---:|
+| enp0s8.3 |  router-1 | 192.168.2.1 | 
+| enp0s8 | host-b | 192.168.2.2 
+
 - between router-2 and host-c
+| NETWORK INTERFACE | DEVICE | IP ADDRESS | 
+| :---: | :---: | :---:|
+| enp0s8 |  router-1 | 192.168.4.1 | 
+| enp0s8 | host-b | 192.168.4.2 
 
