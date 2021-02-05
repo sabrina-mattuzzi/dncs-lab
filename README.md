@@ -130,6 +130,7 @@ The assignment deliverable consists of a Github repository containing:
 
 I divided the network in the image above in four different subnets:
 - between router-1 and router-2
+
 In thist subnet there are only router-1 and router-2, so I decided to use \30 to manage only 2 adresses (2<sup>32-30</sup>-2=2)
 
 | NETWORK INTERFACE | DEVICE | IP ADDRESS | 
@@ -139,6 +140,7 @@ In thist subnet there are only router-1 and router-2, so I decided to use \30 to
 
 
 - between router-1 and host-a
+
 In thist subnet I have to manage 435 ip adresses, so I decided to use \23 (2<sup>32-23</sup>-2=510>435).
 Host-a is connected to the same switch as host-b, to differentiate the two subnets I created two distinct VLANs. Host-a's subnet uses tag "2"
 
@@ -148,6 +150,7 @@ Host-a is connected to the same switch as host-b, to differentiate the two subne
 | enp0s8 | host-a | 192.168.0.2\23 
 
 - between router-1 and host-b
+
 In thist subnet I have to manage 371 ip adresses, so I decided to use \23 (2<sup>32-23</sup>-2=510>371). 
 Host-b is connected to the same switch as host-a, to differentiate the two subnets I created two distinct VLANs. Host-b's subnet uses tag "3".
 
@@ -157,6 +160,7 @@ Host-b is connected to the same switch as host-a, to differentiate the two subne
 | enp0s8 | host-b | 192.168.2.2\23 
 
 - between router-2 and host-c
+
 In thist subnet I have to manage 348 ip adresses, so I decided to use \23 (2<sup>32-23</sup>-2=510>348)
 
 | NETWORK INTERFACE | DEVICE | IP ADDRESS | 
