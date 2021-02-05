@@ -137,4 +137,4 @@ I divided the network in te image above four different subnets:
 | NETWORK INTERFACE | DEVICE | IP ADDRESS | 
 | :---: | :---: | :---:|
 | enp0s9 |  router-1 | 10.1.1.1 | 
-| enp0s9 | router-2 | 10.1.1.2 \ 
+| enp0s9 | router-2 | 10.1.1.2
