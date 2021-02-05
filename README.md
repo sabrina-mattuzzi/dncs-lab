@@ -124,6 +124,13 @@ The assignment deliverable consists of a Github repository containing:
 - No dynamic routing can be used
 - Routes must be as generic as possible
 
-## Network and subnetting
+## Network and subnet
 
 ![alt text](https://github.com/sabrina-mattuzzi/dncs-lab/blob/master/rete.JPG)
+I divided the network in te image above four different subnets:
+- between router-1 and router-2
+- between router-1 and host-a
+- between router-1 and host-b
+- between router-2 and host-c
+### subnets table
+| NETWORK INTERFACE | DEVICE | IP ADDRESS | |: --------------- | : --------------- | : ---------------| | enp0s9 |  router-1 | 10.1.1.1 | | enp0s9 | router-2 | 10.1.1.2 \| |
