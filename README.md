@@ -141,30 +141,30 @@ In thist subnet there are only router-1 and router-2, so I decided to use \30 to
 
 - between router-1 and host-a
 
-In thist subnet I have to manage 435 ip adresses, so I decided to use \23 (2<sup>32-23</sup>-2=510>435).
+In thist subnet I have to manage 435 ip adresses, so I decided to use /23 (2<sup>32-23</sup>-2=510>435).
 Host-a is connected to the same switch as host-b, to differentiate the two subnets I created two distinct VLANs. Host-a's subnet uses tag "2"
 
 | NETWORK INTERFACE | DEVICE | IP ADDRESS | 
 | :---: | :---: | :---:|
-| enp0s8.2 |  router-1 | 192.168.0.1\23 | 
-| enp0s8 | host-a | 192.168.0.2\23 
+| enp0s8.2 |  router-1 | 192.168.0.1/23 | 
+| enp0s8 | host-a | 192.168.0.2/23 
 
 - between router-1 and host-b
 
-In thist subnet I have to manage 371 ip adresses, so I decided to use \23 (2<sup>32-23</sup>-2=510>371). 
+In thist subnet I have to manage 371 ip adresses, so I decided to use /23 (2<sup>32-23</sup>-2=510>371). 
 Host-b is connected to the same switch as host-a, to differentiate the two subnets I created two distinct VLANs. Host-b's subnet uses tag "3".
 
 | NETWORK INTERFACE | DEVICE | IP ADDRESS | 
 | :---: | :---: | :---:|
-| enp0s8.3 |  router-1 | 192.168.2.1\23 | 
-| enp0s8 | host-b | 192.168.2.2\23 
+| enp0s8.3 |  router-1 | 192.168.2.1/23 | 
+| enp0s8 | host-b | 192.168.2.2/23 
 
 - between router-2 and host-c
 
-In thist subnet I have to manage 348 ip adresses, so I decided to use \23 (2<sup>32-23</sup>-2=510>348)
+In thist subnet I have to manage 348 ip adresses, so I decided to use /23 (2<sup>32-23</sup>-2=510>348)
 
 | NETWORK INTERFACE | DEVICE | IP ADDRESS | 
 | :---: | :---: | :---:|
-| enp0s8 |  router-1 | 192.168.4.1\23 | 
-| enp0s8 | host-b | 192.168.4.2\23
+| enp0s8 |  router-1 | 192.168.4.1/23 | 
+| enp0s8 | host-b | 192.168.4.2/23
 
