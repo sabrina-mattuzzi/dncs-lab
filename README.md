@@ -133,28 +133,28 @@ I divided the network in the image above in four different subnets:
 
 | NETWORK INTERFACE | DEVICE | IP ADDRESS | 
 | :---: | :---: | :---:|
-| enp0s9 |  router-1 | 10.1.1.1 | 
-| enp0s9 | router-2 | 10.1.1.2 
+| enp0s9 |  router-1 | 10.1.1.1\30 | 
+| enp0s9 | router-2 | 10.1.1.2\30 
 
 
 - between router-1 and host-a. In thist subnet I have to manage 435 ip adresses, so I decided to use \23 (2<sup>32-23</sup>-2=510>435)
 
 | NETWORK INTERFACE | DEVICE | IP ADDRESS | 
 | :---: | :---: | :---:|
-| enp0s8.2 |  router-1 | 192.168.0.1 | 
-| enp0s8 | host-a | 192.168.0.2 
+| enp0s8.2 |  router-1 | 192.168.0.1\23 | 
+| enp0s8 | host-a | 192.168.0.2\23 
 
 - between router-1 and host-b. In thist subnet I have to manage 371 ip adresses, so I decided to use \23 (2<sup>32-23</sup>-2=510>371)
 
 | NETWORK INTERFACE | DEVICE | IP ADDRESS | 
 | :---: | :---: | :---:|
-| enp0s8.3 |  router-1 | 192.168.2.1 | 
-| enp0s8 | host-b | 192.168.2.2 
+| enp0s8.3 |  router-1 | 192.168.2.1\23 | 
+| enp0s8 | host-b | 192.168.2.2\23 
 
 - between router-2 and host-c. In thist subnet I have to manage 348 ip adresses, so I decided to use \23 (2<sup>32-23</sup>-2=510>348)
 
 | NETWORK INTERFACE | DEVICE | IP ADDRESS | 
 | :---: | :---: | :---:|
-| enp0s8 |  router-1 | 192.168.4.1 | 
-| enp0s8 | host-b | 192.168.4.2 
+| enp0s8 |  router-1 | 192.168.4.1\23 | 
+| enp0s8 | host-b | 192.168.4.2\23
 
