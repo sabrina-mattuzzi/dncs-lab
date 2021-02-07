@@ -180,11 +180,11 @@ vb.memory = 512
 
 # Devices configuration
 
+## Switch
+
 ## Router-1
 
 ## Router-2
-
-## Switch
 
 ## Host-a
 
