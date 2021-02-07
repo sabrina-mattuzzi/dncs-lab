@@ -167,3 +167,6 @@ In thist subnet I have to manage 348 ip adresses, so I decided to use /23 (2<sup
 | enp0s8 |  router-1 | 192.168.4.1/23 | 
 | enp0s8 | host-b | 192.168.4.2/23
 
+## Vagrantfile
+
+I modified the Vagrantfile, changing the 'path' on each device.
