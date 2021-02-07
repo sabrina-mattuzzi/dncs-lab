@@ -124,7 +124,7 @@ The assignment deliverable consists of a Github repository containing:
 - No dynamic routing can be used
 - Routes must be as generic as possible
 
-## Network and subnet
+## Network and subnets
 
 ![alt text](https://github.com/sabrina-mattuzzi/dncs-lab/blob/master/rete.JPG)
 
