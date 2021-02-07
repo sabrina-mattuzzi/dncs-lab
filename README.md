@@ -182,13 +182,119 @@ vb.memory = 512
 
 ## Switch
 
+```
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get install -y tcpdump
+apt-get install -y openvswitch-common openvswitch-switch apt-transport-https ca-certificates curl software-properties-common
+
+#Startup commands for switch go here
+sudo ovs-vsctl add-br switch
+sudo ovs-vsctl add-port switch enp0s8
+sudo ovs-vsctl add-port switch enp0s9 tag="2"
+sudo ovs-vsctl add-port switch enp0s10 tag="3"
+
+#Setting up links
+sudo ip link set dev enp0s8 up
+sudo ip link set dev enp0s9 up
+sudo ip link set dev enp0s10 up
+```
+
 ## Router-1
+
+```
+export DEBIAN_FRONTEND=noninteractive
+
+#Startup commands go here
+#Enable routing
+sudo sysctl -w net.ipv4.ip_forward=1
+
+#Network and VLAN interface config
+sudo ip addr add 10.1.1.1/30 dev enp0s9
+sudo ip link set dev enp0s9 up
+
+sudo ip link add link enp0s8 name enp0s8.2 type vlan id 2
+sudo ip link add link enp0s8 name enp0s8.3 type vlan id 3
+sudo ip addr add 192.168.0.1/23 dev enp0s8.2
+sudo ip addr add 192.168.2.1/23 dev enp0s8.3
+sudo ip link set dev enp0s8 up
+
+#Access to Host-c
+sudo ip route add 192.168.4.0/23 via 10.1.1.2
+```
 
 ## Router-2
 
+```
+export DEBIAN_FRONTEND=noninteractive
+
+#Startup commands go here
+#Enable routing
+sudo sysctl -w net.ipv4.ip_forward=1
+
+#Network interface config
+sudo ip addr add 10.1.1.2/30 dev enp0s9
+sudo ip link set dev enp0s9 up
+
+sudo ip addr add 192.168.4.2/23 dev enp0s8
+sudo ip link set dev enp0s8 up
+
+#Access to Host-a and Host-b
+sudo ip route add 192.168.0.0/23 via 10.1.1.1
+sudo ip route add 192.168.2.0/23 via 10.1.1.1
+```
+
 ## Host-a
+
+```
+export DEBIAN_FRONTEND=noninteractive
+
+#Startup commands go here
+sudo ip addr add 192.168.0.2/23 dev enp0s8
+sudo ip link set dev enp0s8 up
+
+sudo ip route add 10.1.1.0/30 via 192.168.0.1
+
+sudo ip route add 192.168.2.0/23 via 192.168.0.1
+sudo ip route add 192.168.4.0/23 via 192.168.0.1
+```
 
 ## Host-b
 
+```
+export DEBIAN_FRONTEND=noninteractive
+
+#Startup commands go here
+sudo ip addr add 192.168.2.2/23 dev enp0s8
+sudo ip link set dev enp0s8 up
+
+sudo ip route add 10.1.1.0/30 via 192.168.2.1
+
+sudo ip route add 192.168.0.0/23 via 192.168.2.1
+sudo ip route add 192.168.4.0/23 via 192.168.2.1
+```
+
 ## Host-c
 
+``` 
+export DEBIAN_FRONTEND=noninteractive
+
+#Startup commands go here
+
+#Network interface config
+sudo ip addr add 192.168.4.2/23 dev enp0s8
+sudo ip link set dev enp0s8 up
+
+#Defaul gateway set up
+sudo ip route add 10.1.1.0/30 via 192.168.4.1
+sudo ip route add 192.168.0.0/23 via 192.168.4.1
+sudo ip route add 192.168.2.0/23 via 192.168.4.1
+
+sudo apt-get update
+#Install and run Docker.io
+sudo apt -y install docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo docker pull dustnic82/nginx-test
+sudo docker run --name nginx -p 80:80 -d dustnic82/nginx-test
+```
