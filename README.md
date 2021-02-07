@@ -169,4 +169,4 @@ In thist subnet I have to manage 348 ip adresses, so I decided to use /23 (2<sup
 
 ## Vagrantfile
 
-I modified the Vagrantfile, changing the 'path' on each device.
+I modified the Vagrantfile, changing the `path` on each device.
