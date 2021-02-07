@@ -169,4 +169,26 @@ In thist subnet I have to manage 348 ip adresses, so I decided to use /23 (2<sup
 
 ## Vagrantfile
 
-I modified the Vagrantfile, changing the `path` on each device.
+I modified the Vagrantfile, changing the path on each device such as
+```
+ hostc.vm.provision "shell", path: "host-c.sh"
+```
+Also to put and run the docker-image it was necessary to increase the memory of the host-c from 256 MB to 512 MB.
+```
+vb.memory = 512
+```
+
+# Devices configuration
+
+## Router-1
+
+## Router-2
+
+## Switch
+
+## Host-a
+
+## Host-b
+
+## Host-c
+
