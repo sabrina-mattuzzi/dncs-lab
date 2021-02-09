@@ -182,9 +182,9 @@ vb.memory = 512
 
 ## Router-1
 
-In the file "router-1.sh" I added the ip adresses of router-2 with the command `sudo ip addr add 10.1.1.1/30 dev enp0s9` and the command `sudo ip link set dev enp0s9 up` active this port when I run the command `vagrant up`.
+I added the IP adresses of router-1 with the command `sudo ip addr add 10.1.1.1/30 dev enp0s9` and the command `sudo ip link set dev enp0s9 up` active this port when I run the command `vagrant up`.
 With the `sudo ip link add link enp0s8 name enp0s8.2 type vlan id 2` `sudo ip link add link enp0s8 name enp0s8.3 type vlan id 3` commands I divided the port that connects the router-1 with the switch into two VLANs with identification tags, to manage the traffic with the host-a subnet and the traffic with the host-b subnet with two different gateway addresses.
-I added the IP addresses of the hosts and enabled their ports in the same way as router-2. Finally to access to host-c I implemented a static route with the command `sudo ip route add 192.168.4.0/23 via 10.1.1.2`.
+To connect router-1 to host-a and host-b I used `sudo ip addr add 192.168.0.1/23 dev enp0s8.2` `sudo ip addr add 192.168.2.1/23 dev enp0s8.3` and then `sudo ip link set dev enp0s8 up`. Finally to access to host-c I implemented a static route with the command `sudo ip route add 192.168.4.0/23 via 10.1.1.2`.
 
 ```
 export DEBIAN_FRONTEND=noninteractive
@@ -209,7 +209,7 @@ sudo ip route add 192.168.4.0/23 via 10.1.1.2
 
 ## Router-2
 
-In the file "router-2.sh" I added the ip adresses of router-1 and the host-c with the commands `sudo ip addr add 10.1.1.2/30 dev enp0s9` `sudo ip addr add 192.168.4.2/23 dev enp0s8`.
+I added the ip adresses of router-1 and the host-c with the commands `sudo ip addr add 10.1.1.2/30 dev enp0s9` `sudo ip addr add 192.168.4.2/23 dev enp0s8`.
 To access to host-a and host-b I implemented two static routes with the command `sudo ip route add 192.168.0.0/23 via 10.1.1.1` `sudo ip route add 192.168.2.0/23 via 10.1.1.1`.
 ```
 export DEBIAN_FRONTEND=noninteractive
@@ -232,6 +232,7 @@ sudo ip route add 192.168.2.0/23 via 10.1.1.1
 
 ## Switch
 
+I created a bridge in the switch database with the command `sudo ovs-vsctl add-br switch` and then I used `sudo ovs-vsctl add-port switch enp0s8` to add a port connected to router-1. The commands `sudo ovs-vsctl add-port switch enp0s9 tag="2"` `sudo ovs-vsctl add-port switch enp0s10 tag="3"` allows you to add a port and identify it with the respective tag. In this case I connected enp0s9 with host-a and enp0s10 with host-b.
 ```
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
@@ -252,6 +253,9 @@ sudo ip link set dev enp0s10 up
 
 ## Host-a
 
+To connected host-a to router-1 I used the `sudo ip route add 10.1.1.0/30 via 192.168.0.1` command.
+To access to host-b and host-c I implemented two static routes with the command `sudo ip route add 192.168.2.0/23 via 192.168.0.1` `sudo ip route add 192.168.4.0/23 via 192.168.0.1`.
+
 ```
 export DEBIAN_FRONTEND=noninteractive
 
@@ -267,6 +271,9 @@ sudo ip route add 192.168.4.0/23 via 192.168.0.1
 
 ## Host-b
 
+To connected host-a to router-1 I used the `sudo ip route add 10.1.1.0/30 via 192.168.2.1` command.
+To access to host-b and host-c I implemented two static routes with the command `sudo ip route add 192.168.0.0/23 via 192.168.2.1` `sudo ip route add 192.168.4.0/23 via 192.168.2.1`.
+
 ```
 export DEBIAN_FRONTEND=noninteractive
 
@@ -281,6 +288,8 @@ sudo ip route add 192.168.4.0/23 via 192.168.2.1
 ```
 
 ## Host-c
+
+I connected host-c to router-2 and the other two hosts similar to how I did for host-a (or host-b). I have to install and run a docker image, so I used `sudo apt -y install docker.io` to install docker.io and then with `sudo systemctl start docker` `sudo systemctl enable docker` I made it start and enable. last thing I did is to pull and run the image whit the commands `sudo docker pull dustnic82/nginx-test` `sudo docker run --name nginx -p 80:80 -d dustnic82/nginx-test`.
 
 ``` 
 export DEBIAN_FRONTEND=noninteractive
