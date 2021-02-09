@@ -182,8 +182,9 @@ vb.memory = 512
 
 ## Router-1
 
-In the file "router-1.sh" I added th ip adresses of router-2 with the command `sudo ip addr add 10.1.1.1/30 dev enp0s9` and the command `sudo ip link set dev enp0s9 up ` active this port when I run the vagrant up command.
+In the file "router-1.sh" I added the ip adresses of router-2 with the command `sudo ip addr add 10.1.1.1/30 dev enp0s9` and the command `sudo ip link set dev enp0s9 up` active this port when I run the command `vagrant up`.
 With the `sudo ip link add link enp0s8 name enp0s8.2 type vlan id 2` `sudo ip link add link enp0s8 name enp0s8.3 type vlan id 3` commands I divided the port that connects the router-1 with the switch into two VLANs with identification tags, to manage the traffic with the host-a subnet and the traffic with the host-b subnet with two different gateway addresses.
+I added the IP addresses of the hosts and enabled their ports in the same way as router-2. Finally to access to host-c I implemented a static route with the command `sudo ip route add 192.168.4.0/23 via 10.1.1.2`.
 
 ```
 export DEBIAN_FRONTEND=noninteractive
@@ -208,6 +209,8 @@ sudo ip route add 192.168.4.0/23 via 10.1.1.2
 
 ## Router-2
 
+In the file "router-2.sh" I added the ip adresses of router-1 and the host-c with the commands `sudo ip addr add 10.1.1.2/30 dev enp0s9` `sudo ip addr add 192.168.4.2/23 dev enp0s8`.
+To access to host-a and host-b I implemented two static routes with the command `sudo ip route add 192.168.0.0/23 via 10.1.1.1` `sudo ip route add 192.168.2.0/23 via 10.1.1.1`.
 ```
 export DEBIAN_FRONTEND=noninteractive
 
