@@ -169,7 +169,7 @@ In thist subnet I have to manage 348 ip adresses, so I decided to use /23 (2<sup
 
 ## Vagrantfile
 
-I modified the Vagrantfile, changing the path on each device such as
+I modified the Vagrantfile, changing the path on each device with `name-device.sh`. for example:
 ```
  hostc.vm.provision "shell", path: "host-c.sh"
 ```
@@ -180,27 +180,10 @@ vb.memory = 512
 
 # Devices configuration
 
-## Switch
-
-```
-export DEBIAN_FRONTEND=noninteractive
-apt-get update
-apt-get install -y tcpdump
-apt-get install -y openvswitch-common openvswitch-switch apt-transport-https ca-certificates curl software-properties-common
-
-#Startup commands for switch go here
-sudo ovs-vsctl add-br switch
-sudo ovs-vsctl add-port switch enp0s8
-sudo ovs-vsctl add-port switch enp0s9 tag="2"
-sudo ovs-vsctl add-port switch enp0s10 tag="3"
-
-#Setting up links
-sudo ip link set dev enp0s8 up
-sudo ip link set dev enp0s9 up
-sudo ip link set dev enp0s10 up
-```
-
 ## Router-1
+
+In the file "router-1.sh" I added th ip adresses of router-2 with the command `sudo ip addr add 10.1.1.1/30 dev enp0s9` and the command `sudo ip link set dev enp0s9 up ` active this port when I run the vagrant up command.
+With the `sudo ip link add link enp0s8 name enp0s8.2 type vlan id 2` `sudo ip link add link enp0s8 name enp0s8.3 type vlan id 3` commands I divided the port that connects the router-1 with the switch into two VLANs with identification tags, to manage the traffic with the host-a subnet and the traffic with the host-b subnet with two different gateway addresses.
 
 ```
 export DEBIAN_FRONTEND=noninteractive
@@ -242,6 +225,26 @@ sudo ip link set dev enp0s8 up
 #Access to Host-a and Host-b
 sudo ip route add 192.168.0.0/23 via 10.1.1.1
 sudo ip route add 192.168.2.0/23 via 10.1.1.1
+```
+
+## Switch
+
+```
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+apt-get install -y tcpdump
+apt-get install -y openvswitch-common openvswitch-switch apt-transport-https ca-certificates curl software-properties-common
+
+#Startup commands for switch go here
+sudo ovs-vsctl add-br switch
+sudo ovs-vsctl add-port switch enp0s8
+sudo ovs-vsctl add-port switch enp0s9 tag="2"
+sudo ovs-vsctl add-port switch enp0s10 tag="3"
+
+#Setting up links
+sudo ip link set dev enp0s8 up
+sudo ip link set dev enp0s9 up
+sudo ip link set dev enp0s10 up
 ```
 
 ## Host-a
